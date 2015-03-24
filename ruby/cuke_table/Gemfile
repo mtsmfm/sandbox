@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'cucumber'
+gem 'cucumber', '~> 2.0.0.rc'
 gem 'rspec'
 gem 'pry-byebug'
