@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+#set :backend, :docker
+#set :docker_container
+
 RSpec.describe do
   around do |example|
     container = Docker::Container.create(
@@ -16,7 +19,7 @@ RSpec.describe do
     )
     container.start!
 
-    container.exec %w(ebuild /var/db/repos/esm/dev-util/drone/drone-9999.ebuild merge)
+    puts container.exec %w(ebuild /var/db/repos/esm/dev-util/drone/drone-9999.ebuild merge)
 
     example.run
 

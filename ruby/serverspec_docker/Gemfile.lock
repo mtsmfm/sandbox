@@ -21,6 +21,10 @@ GEM
     excon (0.45.1)
     json (1.8.2)
     method_source (0.8.2)
+    multi_json (1.11.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
     pry-byebug (3.1.0)
       byebug (~> 4.0)
       pry (~> 0.10)
@@ -33,11 +37,22 @@ GEM
     rspec-expectations (3.2.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
+    rspec-its (1.2.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
     rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    serverspec (2.14.0)
+      multi_json
+      rspec (~> 3.0)
+      rspec-its
+      specinfra (~> 2.25)
     slop (3.6.0)
+    specinfra (2.28.1)
+      net-scp
+      net-ssh
 
 PLATFORMS
   ruby
@@ -47,3 +62,4 @@ DEPENDENCIES
   pry!
   pry-byebug
   rspec
+  serverspec
