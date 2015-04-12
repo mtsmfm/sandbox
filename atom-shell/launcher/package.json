@@ -1,8 +1,13 @@
 {
   "name": "your-app",
   "version": "0.1.0",
-  "main": "main.js",
+  "main": "build/js/main.js",
   "devDependencies": {
-    "atom-shell": "^0.22.3"
+    "atom-shell": "^0.22.3",
+    "atom-watcher": "^0.1.2",
+    "coffee-script": "^1.9.1",
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-slim": "^0.1.0"
   }
 }
