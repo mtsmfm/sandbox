@@ -25,7 +25,7 @@ app.on 'ready', ->
   mainWindow.loadUrl 'file://' + __dirname + '/../html/index.html'
   mainWindow.on 'blur', ->
     mainWindow.hide()
-  globalShortcut.register 'Ctrl+Space', ->
+  globalShortcut.register 'Alt+Space', ->
     if mainWindow.isVisible()
       mainWindow.hide()
     else
