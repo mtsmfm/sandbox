@@ -1,0 +1,9 @@
+{
+  "name": "test_sprockets",
+  "version": "1.0.0",
+  "description": "== README",
+  "author": "",
+  "devDependencies": {
+    "bower": "^1.4.1"
+  }
+}
