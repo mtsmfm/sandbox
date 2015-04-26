@@ -5,7 +5,7 @@ var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
 
-describe('electron-slim:app', function () {
+describe('electron:app', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../app'))
       .withOptions({ skipInstall: true })
