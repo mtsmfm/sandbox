@@ -66,6 +66,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('envrc'),
         this.destinationPath('.envrc')
       );
+      this.fs.copy(
+        this.templatePath('gitignore'),
+        this.destinationPath('.gitignore')
+      );
     }
   },
 
