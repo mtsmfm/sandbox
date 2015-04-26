@@ -17,6 +17,7 @@
         bunlde install
 
 2. Add executables to PATH
+
       Use direnv
 
         direnv allow
