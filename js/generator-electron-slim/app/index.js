@@ -17,10 +17,8 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      name: 'appName',
+      message: 'What do you want to name your app?'
     }];
 
     this.prompt(prompts, function (props) {
@@ -44,9 +42,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('src/**/*'),
         this.destinationPath('src')
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_package.json'),
-        this.destinationPath('package.json')
+        this.destinationPath('package.json'),
+        {appName: this.props.appName}
       );
       this.fs.copy(
         this.templatePath('_Gemfile'),
