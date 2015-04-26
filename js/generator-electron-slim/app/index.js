@@ -32,14 +32,25 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: {
+    gulpfile: function () {
+      this.fs.copy(
+        this.templatePath('gulpfile.coffee'),
+        this.destinationPath('gulpfile.coffee')
+      );
+    },
+
     app: function () {
+      this.fs.copy(
+        this.templatePath('src/**/*'),
+        this.destinationPath('src')
+      );
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
       );
       this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
+        this.templatePath('_Gemfile'),
+        this.destinationPath('Gemfile')
       );
     },
 
@@ -56,6 +67,20 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
+    this.npmInstall(
+      [
+        'coffee-script',
+        'gulp',
+        'gulp-util',
+        'gulp-coffee',
+        'gulp-sass',
+        'gulp-slim',
+        'gulp-plumber',
+        'electron-prebuilt'
+      ],
+      {'saveDev': true}
+    );
     this.installDependencies();
+    this.spawnCommand('bundle', ['install', '--binstubs']);
   }
 });
