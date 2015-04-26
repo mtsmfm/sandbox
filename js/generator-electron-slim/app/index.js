@@ -47,6 +47,11 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('package.json'),
         {appName: this.props.appName}
       );
+      this.fs.copyTpl(
+        this.templatePath('_bower.json'),
+        this.destinationPath('bower.json'),
+        {appName: this.props.appName}
+      );
       this.fs.copy(
         this.templatePath('_Gemfile'),
         this.destinationPath('Gemfile')
@@ -54,6 +59,11 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     projectfiles: function () {
+      this.fs.copyTpl(
+        this.templatePath('README.md'),
+        this.destinationPath('README.md'),
+        {appName: this.props.appName}
+      );
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')

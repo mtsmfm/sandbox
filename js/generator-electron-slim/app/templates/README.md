@@ -7,6 +7,7 @@
 - Node.js
 - Ruby
 - Bundler
+- direnv (optional, recommended)
 
 ### Getting Started
 
@@ -16,8 +17,13 @@
       bunlde install
 
 2. Add executables to PATH
+    Use direnv
 
       direnv allow
+
+    or export manually
+
+      export PATH=$PWD/bin:$PWD/node_modules/.bin:$PATH
 
 3. Run gulp
 
