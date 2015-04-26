@@ -63,6 +63,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('jshintrc'),
         this.destinationPath('.jshintrc')
       );
+      this.fs.copy(
+        this.templatePath('envrc'),
+        this.destinationPath('.envrc')
+      );
     }
   },
 
