@@ -1,0 +1,16 @@
+{
+  "name": "test_sprockets2",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mtsmfm/sandbox",
+  "authors": [
+    "Fumiaki MATSUSHIMA <mtsmfm@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
