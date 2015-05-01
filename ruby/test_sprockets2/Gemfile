@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+gem 'sprockets', path: '~/.ghq/github.com/sstephenson/sprockets'
+
+gem 'pry-byebug'
