@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'activesupport'
 gem 'opal'
-gem 'therubyracer'
+gem 'pry-byebug'
+gem 'slim'
+gem 'sprockets'
