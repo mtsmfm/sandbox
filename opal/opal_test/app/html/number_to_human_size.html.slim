@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title opal sample
+    script(src='assets/opal.js')
+    script(src='assets/jquery.js')
+    script(src='assets/opal-jquery.js')
+    script(src='assets/number_to_human_size.js')
+
+  body
+    .ruby ActiveSupport::NumberHelper.number_to_human_size(1234)
+    .opal
+
+opal:
+  Element.find('.opal').text =
+    ActiveSupport::NumberHelper.number_to_human_size(1234)

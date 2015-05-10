@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title opal sample
+    script(src='assets/opal.js')
+    script(src='assets/jquery.js')
+    script(src='assets/opal-jquery.js')
+    script(src='assets/active_support/core_ext/object/blank.js')
+
+  body
+    .ruby nil.blank?
+    .opal
+
+opal:
+  Element.find('.opal').text = nil.blank?

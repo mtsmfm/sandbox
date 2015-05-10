@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title opal sample
+    script(src='assets/opal.js')
+    script(src='assets/jquery.js')
+    script(src='assets/opal-jquery.js')
+    script(src='assets/opal-parser.js')
+
+  body
+    button
+      | click me
+
+script(type='text/ruby')
+  |
+    Document.ready? do
+      Element.find('button').on(:click) do |evt|
+        h1 = Element.new(:h1)
+        h1.text = 'Hello world'
+        Element.find('body').append(h1)
+        evt.current_target.remove
+      end
+    end

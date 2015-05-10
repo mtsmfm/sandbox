@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gem 'activesupport'
 gem 'opal'
+gem 'opal-jquery'
 gem 'pry-byebug'
 gem 'slim'
 gem 'sprockets'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery'
+end
