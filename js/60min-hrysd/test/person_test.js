@@ -1,5 +1,5 @@
 var assert = require('power-assert');
-var Person = require('../dist/person.js');
+var Person = require('../src/person.js');
 
 describe('Person', function() {
   describe('#fullname', function() {
