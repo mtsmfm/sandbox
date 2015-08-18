@@ -1,11 +1,11 @@
-var assert = require('power-assert');
-var Person = require('../src/person.js');
+import assert from 'power-assert';
+import Person from '../src/person.js';
 
-describe('Person', function() {
-  describe('#fullname', function() {
+describe('Person', () => {
+  describe('#fullname', () => {
     var person = new Person('Hiroshi', 'Yoshida');
 
-    it('return fullname', function() {
+    it('return fullname', () => {
       assert(person.fullname() === 'HHYoshida Hiroshi');
     });
   });

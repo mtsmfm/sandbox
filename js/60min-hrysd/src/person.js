@@ -1,12 +1,3 @@
-class Person {
-  constructor(firstName, lastName) {
-    this.firstName = firstName
-    this.lastName = lastName
-  }
-
-  fullname() {
-    return `${this.lastName} ${this.firstName}`;
-  }
-}
-
-export default Person;
+[1,2,3].map(function (e) {
+  console.log(e);
+});

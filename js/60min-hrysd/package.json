@@ -17,6 +17,6 @@
   },
   "scripts": {
     "build": "babel src --out-dir dist",
-    "test": "mocha --require intelli-espower-loader --compilers js:babel/register"
+    "test": "mocha --require intelli-espower-loader --harmony"
   }
 }
