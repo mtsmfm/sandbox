@@ -4,6 +4,18 @@ const Menu = require('menu');
 
 const template = [
   {
+    label: 'File',
+    submenu: [
+    {
+      label: 'Open',
+      accelerator: 'Cmd+O',
+      click: (item, focusedWindow) => {
+        console.log('open markdown file.');
+      }
+    }
+    ]
+  },
+  {
     label: 'View',
     submenu: [
       {
