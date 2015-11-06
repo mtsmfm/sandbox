@@ -3,7 +3,7 @@
 const Menu = require('menu');
 const dialog = require('dialog');
 
-var showFileOpenDialog = () => {
+const showFileOpenDialog = () => {
   return dialog.showOpenDialog(
     {
       properties: ['openFile'],
@@ -14,7 +14,7 @@ var showFileOpenDialog = () => {
     }
   );
 }
-var showFileSaveDialog = () => {
+const showFileSaveDialog = () => {
   return dialog.showSaveDialog(
       {
         filters: [
@@ -24,7 +24,7 @@ var showFileSaveDialog = () => {
       }
       );
 }
-var saveAsPDF = (win, path, cb) => {
+const saveAsPDF = (win, path, cb) => {
   win.webContents.printToPDF({}, (error, data) => {
     if (error) {
       cb(error);
