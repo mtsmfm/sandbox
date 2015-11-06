@@ -24,8 +24,8 @@ var showFileSaveDialog = () => {
       }
       );
 }
-function saveAsPDF(win, path, cb) {
-  win.webContents.printToPDF({}, function(error, data) {
+var saveAsPDF = (win, path, cb) => {
+  win.webContents.printToPDF({}, (error, data) => {
     if (error) {
       cb(error);
       return;
