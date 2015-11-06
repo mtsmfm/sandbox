@@ -23,7 +23,10 @@ const template = [
       label: 'Open',
       accelerator: 'Cmd+O',
       click: (item, focusedWindow) => {
-        showFileOpenDialog();
+        const file = showFileOpenDialog();
+        if (file) {
+          console.log('opend' + file);
+        }
       }
     }
     ]
