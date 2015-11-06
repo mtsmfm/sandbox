@@ -25,7 +25,12 @@ const template = [
       click: (item, focusedWindow) => {
         const file = showFileOpenDialog();
         if (file) {
-          console.log('opend' + file);
+          require('./md2html').toHtmlFile(file[0], (err, htmlFilePath) => {
+            if (err) {
+              throw err;
+            }
+            focusedWindow.loadUrl('file://' + htmlFilePath);
+          });
         }
       }
     }
