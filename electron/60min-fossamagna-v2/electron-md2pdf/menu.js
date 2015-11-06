@@ -14,6 +14,25 @@ var showFileOpenDialog = () => {
     }
   );
 }
+var showFileSaveDialog = () => {
+  return dialog.showSaveDialog(
+      {
+        filters: [
+        { name: 'PDF', extensions: ['pdf'] },
+        { name: 'All Files', extensions: ['*'] }
+        ]
+      }
+      );
+}
+function saveAsPDF(win, path, cb) {
+  win.webContents.printToPDF({}, function(error, data) {
+    if (error) {
+      cb(error);
+      return;
+    }
+    require('fs').writeFile(path, data, cb);
+  })
+}
 
 const template = [
   {
@@ -31,6 +50,20 @@ const template = [
             }
             focusedWindow.loadUrl(`file://${htmlFilePath}`);
           });
+        }
+      }
+    },
+    {
+      label: 'SaveAsPDF',
+      accelerator: 'Shift+Cmd+O',
+      click: function(item, focusedWindow) {
+        const file = showFileSaveDialog();
+        if (file) {
+          saveAsPDF(focusedWindow, file, (err) => {
+            if (err) {
+              dialog.showErrorBox('Save Error', err.toString());
+            }
+          })
         }
       }
     }
