@@ -29,7 +29,7 @@ const template = [
             if (err) {
               throw err;
             }
-            focusedWindow.loadUrl('file://' + htmlFilePath);
+            focusedWindow.loadUrl(`file://${htmlFilePath}`);
           });
         }
       }
