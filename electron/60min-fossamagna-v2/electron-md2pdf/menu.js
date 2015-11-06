@@ -1,6 +1,19 @@
 'use strict';
 
 const Menu = require('menu');
+const dialog = require('dialog');
+
+var showFileOpenDialog = () => {
+  return dialog.showOpenDialog(
+    {
+      properties: ['openFile'],
+      filters: [
+        { name: 'Markdown', extensions: ['md'] },
+        { name: 'All Files', extensions: ['*'] }
+      ]
+    }
+  );
+}
 
 const template = [
   {
@@ -10,7 +23,7 @@ const template = [
       label: 'Open',
       accelerator: 'Cmd+O',
       click: (item, focusedWindow) => {
-        console.log('open markdown file.');
+        showFileOpenDialog();
       }
     }
     ]
