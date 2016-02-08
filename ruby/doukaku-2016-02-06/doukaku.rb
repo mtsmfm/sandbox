@@ -64,7 +64,7 @@ def solve(input)
     field.fill_by(group)
   end
   groups = field.transpose.field.uniq.map(&:uniq)
-  g = groups.map.with_index {|group, i| group.select {|e| (groups - groups.from(i)).flatten.uniq.exclude?(e) } }[ans_key.to_i - 1]
+  g = groups.map.with_index {|group, i| group.chunk {|e| (groups - groups.from(i)).flatten.exclude?(e).presence }.map(&:last) }.flatten(1)[ans_key.to_i - 1]
   "(#{g.join(?,)})"
 end
 
