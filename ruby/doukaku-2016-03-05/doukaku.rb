@@ -1,7 +1,35 @@
 require 'bundler'
 Bundler.require
 
+def to_i(char)
+  case char
+  when '0'..'9'
+    char.to_i
+  when 'A'..'Z'
+    char.ord - ?A.ord + 10
+  when 'a'..'z'
+    char.ord - ?a.ord + 36
+  else
+    binding.pry
+    raise
+  end
+end
+
 def solve(input)
+  n, blacks = input.scan(/(\d+):(.*)/).first
+  n = n.to_i
+  blacks = blacks.split(?,).map {|cs| cs.chars.map {|c| to_i(c) } }
+  result = (0..63).to_a.combination(2).to_a.product((0..63).to_a.combination(2).to_a).select {|(x1, x2), (y1, y2)|
+    blacks.count {|(x, y)| (x1..x2).cover?(x) && (y1..y2).cover?(y) } == n
+  }.map {|(x1, x2), (y1, y2)|
+    (x1..x2).count * (y1..y2).count
+  }.minmax
+
+  if result.any?
+    result.join(?,)
+  else
+    '-'
+  end
 end
 
 def test(input, expect)
