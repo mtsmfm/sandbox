@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker run -it -e "LANG=C.UTF-8" -v $PWD:/go takkanm/esm-gassyuku $@
