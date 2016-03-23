@@ -6,3 +6,4 @@
 !*.rs
 !*.go
 !.gitignore
+!*.md
