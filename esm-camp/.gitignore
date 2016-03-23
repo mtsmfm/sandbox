@@ -1,0 +1,8 @@
+*/*
+!/bin
+!*.hs
+!*.exs
+!*.java
+!*.rs
+!*.go
+!.gitignore
