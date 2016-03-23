@@ -15,21 +15,27 @@ def to_i(char)
   end
 end
 
+def count(ary)
+  (x1, x2), (y1, y2) = ary
+  (x1..x2).count * (y1..y2).count
+end
+
 def solve(input)
   n, blacks = input.scan(/(\d+):(.*)/).first
   n = n.to_i
   blacks = blacks.split(?,).map {|cs| cs.chars.map {|c| to_i(c) } }
-  result = (0..63).to_a.combination(2).to_a.product((0..63).to_a.combination(2).to_a).select {|(x1, x2), (y1, y2)|
+  results = (0...62).to_a.repeated_combination(2).to_a.product((0...62).to_a.repeated_combination(2).to_a).select {|(x1, x2), (y1, y2)|
     blacks.count {|(x, y)| (x1..x2).cover?(x) && (y1..y2).cover?(y) } == n
-  }.map {|(x1, x2), (y1, y2)|
-    (x1..x2).count * (y1..y2).count
-  }.minmax
+  }.sort_by {|ary|
+    count(ary)
+  }
+  min = count(results.first)
+  max = count(results.last)
 
-  if result.any?
-    result.join(?,)
-  else
-    '-'
-  end
+  "#{min},#{max}"
+
+rescue
+  '-'
 end
 
 def test(input, expect)
