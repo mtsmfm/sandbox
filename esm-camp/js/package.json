@@ -8,7 +8,8 @@
     "tsc": "tsc"
   },
   "devDependencies": {
-    "typescript": "latest"
+    "typescript": "latest",
+    "typings": "latest"
   },
   "author": "",
   "license": "ISC"
