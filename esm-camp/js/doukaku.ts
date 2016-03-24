@@ -1,9 +1,4 @@
-interface Math {
-  log2(x: number): number;
-}
-interface String {
-  repeat(x: number): string;
-}
+"use strict";
 
 class Doukaku {
   seedCountFor(members: Array<string>): number {
