@@ -5,7 +5,6 @@ interface String {
   repeat(x: number): string;
 }
 
-
 class Doukaku {
   seedCountFor(members: Array<string>): number {
     return Math.pow(2, Math.ceil(Math.log2(members.length))) - members.length;
@@ -26,6 +25,7 @@ class Doukaku {
         let l = left2[i];
         let r = right2[i];
         if (l === r) {
+          // noop
         } else if (l === "R" && r === "S") {
           return left;
         } else if (l === "P" && r === "R") {
@@ -38,24 +38,23 @@ class Doukaku {
       };
     }
   }
-
+  process(members: Array<string>): Array<string> {
+    let nextMembers = [];
+    this.eachSlice(members, 2, (e) => {
+      nextMembers.push(this.battle(e[0], e[1]));
+    });
+    return nextMembers;
+  }
   solve(input: string): string {
     let members = input.match(/\((.*?)\)/g).map((e) => e.replace(/[()]/g, ""));
+    let seedMembers = members.slice(0, this.seedCountFor(members));
     let notSeedMembers = members.slice(- members.length + this.seedCountFor(members));
 
-    let notSeedResult = [];
-    this.eachSlice(notSeedMembers, 2, (e) => {
-      notSeedResult.push(this.battle(e[0], e[1]));
-    });
-    members = members.slice(0, this.seedCountFor(members)).concat(notSeedResult);
+    members = seedMembers.concat(this.process(notSeedMembers));
+
     while (members.length > 1) {
-      let nextMembers = [];
-      this.eachSlice(members, 2, (e) => {
-        nextMembers.push(this.battle(e[0], e[1]));
-      });
-      members = nextMembers;
+      members = this.process(members);
     }
-    console.log(members);
     return `(${members[0]})`;
   }
 }
