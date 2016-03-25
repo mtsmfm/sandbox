@@ -103,9 +103,10 @@ func process(members []string) (next_members []string) {
     channel := make(chan string)
     channels = append(channels, channel)
 
-    go func(left string, right string) {
-      channel <- battle(left, right)
-    }(members[i], members[i+1])
+    go func(left string, right string, c chan string) {
+      c <- battle(left, right)
+      close(c)
+    }(members[i], members[i+1], channel)
   }
 
   for _, channel := range channels {
