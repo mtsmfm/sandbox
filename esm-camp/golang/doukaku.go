@@ -4,6 +4,7 @@ import (
   "fmt"
   "regexp"
   "strings"
+  "unicode/utf8"
 )
 func main() {
   //test("(RSP)(R)(RPS)(SP)", "(RPS)")
@@ -38,8 +39,34 @@ func main() {
   //test("(RSRPSS)(RPPRPRRSP)(PRPSRSRPPP)(SSRSSRS)(RPS)(SP)(PPPPPSSP)(RRRPSR)(PSR)(SRSRSSR)(RPSSSRP)(RRSPSSSPPR)(RS)(SRRRSPRP)(PR)(RSSRPSSS)(PPRRRRRR)(RRSRP)(RRR)(PSPRSSPRP)(PRPPRSSRP)(SPPSPSS)(PSS)(RPS)(P)(RRSRSP)(PS)(RRPSSSRR)(RR)(PPPSPRPR)(PS)(PRSSRPR)(RRP)(PSRPR)(PS)(R)(RRPP)(SSPPSS)(SRPSSS)(RRSRRPRPP)", "(SPPSPSS)")
 }
 
+func battle(left string, right string) string {
+  repeated_left  := strings.Repeat(left, utf8.RuneCountInString(right))
+  repeated_right := strings.Repeat(right, utf8.RuneCountInString(left))
+
+  if repeated_left == repeated_right {
+    return left
+  }
+
+  for i, x := range repeated_left {
+    l:= string(x)
+    r:= string(repeated_right[i])
+
+    if l == r {
+      // noop
+    } else if l == "R" && r == "S" || l == "S" && r == "P" || l == "P" && r == "R" {
+      return left
+    } else {
+      return right
+    }
+  }
+
+  return "xxx"
+}
+
 func solve(input string) string {
-  fmt.Println(parse(input))
+  members := parse(input)
+  fmt.Println(battle(members[1], members[0]))
+
   return "hi"
 }
 
