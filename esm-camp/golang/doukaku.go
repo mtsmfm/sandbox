@@ -1,6 +1,10 @@
 // bin/dr go run golang/doukaku.go
 package main
-import "fmt"
+import (
+  "fmt"
+  "regexp"
+  "strings"
+)
 func main() {
   //test("(RSP)(R)(RPS)(SP)", "(RPS)")
   test("(RPS)(R)(RSP)(SP)(RSSP)", "(RSSP)")
@@ -35,7 +39,17 @@ func main() {
 }
 
 func solve(input string) string {
-  return "hi";
+  fmt.Println(parse(input))
+  return "hi"
+}
+
+func parse(input string) []string {
+  re := regexp.MustCompile(`\(.*?\)`)
+  var members []string
+  for _, member := range re.FindAllString(input, -1) {
+    members = append(members, strings.Replace(strings.Replace(member, "(", "", -1), ")", "", -1))
+  }
+  return members
 }
 
 func test(input string, expected string) {
