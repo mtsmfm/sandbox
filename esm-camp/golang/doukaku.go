@@ -40,35 +40,51 @@ func main() {
   test("(RSRPSS)(RPPRPRRSP)(PRPSRSRPPP)(SSRSSRS)(RPS)(SP)(PPPPPSSP)(RRRPSR)(PSR)(SRSRSSR)(RPSSSRP)(RRSPSSSPPR)(RS)(SRRRSPRP)(PR)(RSSRPSSS)(PPRRRRRR)(RRSRP)(RRR)(PSPRSSPRP)(PRPPRSSRP)(SPPSPSS)(PSS)(RPS)(P)(RRSRSP)(PS)(RRPSSSRR)(RR)(PPPSPRPR)(PS)(PRSSRPR)(RRP)(PSRPR)(PS)(R)(RRPP)(SSPPSS)(SRPSSS)(RRSRRPRPP)", "(SPPSPSS)")
 }
 
+type game struct {
+  left  string
+  right string
+}
+
+func (g game) repeated_left() string {
+  return strings.Repeat(g.left, utf8.RuneCountInString(g.right))
+}
+
+func (g game) repeated_right() string {
+  return strings.Repeat(g.right, utf8.RuneCountInString(g.left))
+}
+
+func (g game) is_even() bool {
+  return g.repeated_left() == g.repeated_right()
+}
+
+func (g game) battle() string {
+  if g.is_even() { return g.left }
+
+  for i, x := range g.repeated_left() {
+    l:= string(x)
+    r:= string(g.repeated_right()[i])
+
+    if l == r {
+      // noop
+    } else if l == "R" && r == "S" || l == "S" && r == "P" || l == "P" && r == "R" {
+      return g.left
+    } else {
+      return g.right
+    }
+  }
+
+  return "xxx"
+}
+
+func battle(left string, right string) string {
+  return game{left: left, right: right}.battle()
+}
+
 func process(members []string) (next_members []string) {
   for i := 0; i < len(members); i+=2 {
     next_members = append(next_members, battle(members[i], members[i+1]))
   }
   return
-}
-
-func battle(left string, right string) string {
-  repeated_left  := strings.Repeat(left, utf8.RuneCountInString(right))
-  repeated_right := strings.Repeat(right, utf8.RuneCountInString(left))
-
-  if repeated_left == repeated_right {
-    return left
-  }
-
-  for i, x := range repeated_left {
-    l:= string(x)
-    r:= string(repeated_right[i])
-
-    if l == r {
-      // noop
-    } else if l == "R" && r == "S" || l == "S" && r == "P" || l == "P" && r == "R" {
-      return left
-    } else {
-      return right
-    }
-  }
-
-  return "xxx"
 }
 
 func split(members []string) (seed, not_seed []string) {
