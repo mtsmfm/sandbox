@@ -5,6 +5,7 @@ import (
   "regexp"
   "strings"
   "unicode/utf8"
+  "math"
 )
 func main() {
   //test("(RSP)(R)(RPS)(SP)", "(RPS)")
@@ -63,9 +64,23 @@ func battle(left string, right string) string {
   return "xxx"
 }
 
+func split(members []string) (seed, not_seed []string) {
+  seed_count := int(math.Pow(2, math.Ceil(math.Log2(float64(len(members)))))) - len(members)
+
+  for i, member := range members {
+    if i < seed_count {
+      seed = append(seed, member)
+    } else {
+      not_seed = append(not_seed, member)
+    }
+  }
+
+  return
+}
+
 func solve(input string) string {
   members := parse(input)
-  fmt.Println(battle(members[1], members[0]))
+  fmt.Println(split(members))
 
   return "hi"
 }
