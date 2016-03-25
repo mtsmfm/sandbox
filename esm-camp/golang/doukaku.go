@@ -85,8 +85,19 @@ func battle(left string, right string) string {
 }
 
 func process(members []string) (next_members []string) {
+  var channels []chan string
+
   for i := 0; i < len(members); i+=2 {
-    next_members = append(next_members, battle(members[i], members[i+1]))
+    channel := make(chan string)
+    channels = append(channels, channel)
+
+    go func(left string, right string) {
+      channel <- battle(left, right)
+    }(members[i], members[i+1])
+  }
+
+  for _, channel := range channels {
+    next_members = append(next_members, <- channel)
   }
   return
 }
